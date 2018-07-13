@@ -1,0 +1,26 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prabhat14595/node-learning-apps.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prabhat14595/node-learning-apps/issues"
+  },
+  "homepage": "https://github.com/prabhat14595/node-learning-apps#readme",
+  "dependencies": {
+    "body": "^5.1.0",
+    "express": "^4.16.3",
+    "hbs": "^4.0.1",
+    "parser": "^0.1.4",
+    "request": "^2.87.0"
+  }
+}
