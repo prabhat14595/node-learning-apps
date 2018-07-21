@@ -35,7 +35,7 @@ request(url, function (err, response, body) {
         res.render('result.hbs', {weather: null, error: 'Error, please try again'});
       } else {
        
-       var Temp_C =  (((weather.main.temp)-32)/1.80).toFixed(2) ;
+       var Temp_C =  (((weather.main.temp)-32)/1.80).toFixed(0) ;
       
         res.render('result.hbs', {weather: weather, temp_c:Temp_C, error: null});
 
