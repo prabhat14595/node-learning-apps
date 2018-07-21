@@ -3,13 +3,55 @@
     {{>header}}
     {{>navbar}}
     <body>
-            <h1>
-                    this is the result page
-                    {{ weather }}
-            </h1>
+            <div class="container">
+            
+        <div class="row">
+                <div class="col s12">
+                        
+                        <h1 class="grey-text">
+                
+                                {{ weather.name }}, {{weather.sys.country}}
+                             
+                               <h2 class="green-text">TEMPARATURE:<b class="blue-text"> {{temp_c}} C </b></h2> 
+                        </h1>
+    
+                </div>
+                
+                        <ul class="collapsible">
+                        <li>
+                        <div class="collapsible-header red-text"><i class="material-icons">whatshot</i>COORDINATE: longitute({{weather.coord.lon}}) lattitude({{weather.coord.lon}})</div>
+                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                        </li>       
+                        <li >
+                        <div class="collapsible-header blue-text"><i class="material-icons">filter_drama</i>TEMPARATURE in F: {{weather.main.temp}}</div>
+                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                        </li>
+                        <li>
+                        <div class="collapsible-header green-text"><i class="material-icons">place</i>PRESSURE: {{weather.main.pressure}}P</div>
+                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                        </li>
+                        <li>
+                        <div class="collapsible-header brown-text"><i class="material-icons">whatshot</i>TEMPARATURE MIN: {{weather.main.temp_min}}  </div>
+                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                        </li>
+                         <li>
+                        <div class="collapsible-header lime-text"><i class="material-icons">filter_drama</i>TEMPARATURE MAX: {{weather.main.temp_max}}</b> </div>
+                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                        </li>
+                        </ul>
 
-            <a href="/">Back</a>
-    </body>
+                
+        </div>
+
+            <a class="waves-effect waves-light btn" href="/">Back</a>
+            </div>
+
+            
+     <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+            
+
+
      {{> footer}}
-
+    </body>
 </html>

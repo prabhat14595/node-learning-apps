@@ -17,12 +17,12 @@ app.get('/', (req, res) => {
 });
 
 
-app.post('/',urlencodedParser, function (req, res) {
+app.post('/', urlencodedParser, function (req, res) {
   const apiKey='fb873262914c18a62e556c99d83c063b';
   var city = req.body.city;
-   console.log(city);
 
-  let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
+
+ let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
 request(url, function (err, response, body) {
     if(err){
       res.render('index', {weather: null, error: 'Error, please try again'});
@@ -31,8 +31,11 @@ request(url, function (err, response, body) {
       if(weather.main == undefined){
         res.render('result.hbs', {weather: null, error: 'Error, please try again'});
       } else {
-        var weatherText = `It's ${weather.main.temp} degrees in ${weather.name}!`;
-        res.render('result.hbs', {weather: weatherText, error: null});
+        console.log(weather);
+       var Temp_C =  (((weather.main.temp)-32)/1.80).toFixed(2) ;
+      
+        res.render('result.hbs', {weather: weather, temp_c:Temp_C, error: null});
+
       }
     }
   });
