@@ -1,28 +1,62 @@
+const express = require('express');
+var bodyParser = require('body-parser');
+var app = express();
+
+const port = process.env.PORT || 3000;
+
+
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+
 const request = require('request');
 
-request({
-    url: 'https://maps.googleapis.com/maps/api/geocode/json?address=%20jiyanpur%20Azamgarh%20276001',
-    json: true,
-  }, function (error, response, body) {
-       
-     var lat=JSON.stringify(body.results[0].geometry.location.lat);
-     var lng=JSON.stringify(body.results[0].geometry.location.lng);
-     console.log(lat);
-     console.log(lng);
+var hbs = require('hbs');
+hbs.registerPartials(__dirname+'/views/particle'); 
+app.set('view engine', 'hbs');
+
+// respond with "hello world" when a GET request is made to the homepage
+
+app.get('/', (req, res) => {
+  res.render('home.hbs')
 });
 
-request({
-    url: 'https://api.darksky.net/forecast/4cdc580f51c4e7734a45d4d64ef52282/37.8267,-122.4233',
-    json: true,
-  }, function (error, response, body) {
-      if(error){d
-          console.log('error have been occured');
-      }else if(response.statusCode === 400){
-          console.log('unable to fetch weather');
-      }else if(response.statusCode === 200){
-        var data1= JSON.stringify(body.currently.temperature);
-        console.log(data1);
-   
+
+app.post('/', urlencodedParser, function (req, res) {
+  const apiKey='fb873262914c18a62e556c99d83c063b';
+  var city = req.body.city;
+
+
+ let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
+request(url, function (err, response, body) {
+    if(err){
+      res.render('index', {weather: null, error: 'Error, please try again'});
+    } else {
+      var weather = JSON.parse(body)
+      if(weather.main == undefined){
+        res.render('result.hbs', {weather: null, error: 'Error, please try again'});
+      } else {
+       
+       var Temp_C =  (((weather.main.temp)-32)/1.80).toFixed(2) ;
+      
+        res.render('result.hbs', {weather: weather, temp_c:Temp_C, error: null});
+
       }
-     
-});
+    }
+  });
+})
+
+
+app.get('/about',  (req, res) => {
+    res.render('about.hbs');
+  });
+
+app.get('/help',  (req, res) => {
+    res.render('help.hbs');
+  });
+
+app.get('/refrence', (req, res) => {
+    res.render('ref.hbs');
+  });
+   
+app.listen(port, () => { 
+   console.log(`app listening to app js to port ${port}`);
+ });

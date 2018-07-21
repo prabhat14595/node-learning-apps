@@ -1,12 +1,15 @@
-const express = require('express')
-var bodyParser = require('body-parser')
-var app = express()
+const express = require('express');
+var bodyParser = require('body-parser');
+var app = express();
 
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+const port = process.env.PORT || 3000;
+
+
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 const request = require('request');
 
-var hbs = require('hbs')
+var hbs = require('hbs');
 hbs.registerPartials(__dirname+'/views/particle'); 
 app.set('view engine', 'hbs');
 
@@ -43,17 +46,17 @@ request(url, function (err, response, body) {
 
 
 app.get('/about',  (req, res) => {
-    res.render('about.hbs')
+    res.render('about.hbs');
   });
 
 app.get('/help',  (req, res) => {
-    res.render('help.hbs')
+    res.render('help.hbs');
   });
 
 app.get('/refrence', (req, res) => {
-    res.render('ref.hbs')
+    res.render('ref.hbs');
   });
    
-app.listen(3000, () => { 
-   console.log('app listening to app js to port 3000')
+app.listen(port, () => { 
+   console.log(`app listening to app js to port ${port}`);
  });
