@@ -32,12 +32,17 @@ request(url, function (err, response, body) {
     } else {
       var weather = JSON.parse(body)
       if(weather.main == undefined){
-        res.render('result.hbs', {weather: null, error: 'Error, please try again'});
+        res.render('error.hbs', {weather: null, error: 'Error, please try again', massage:'we may think either our servers not responding or this City do not exist'});
       } else {
        
        var Temp_C =  (((weather.main.temp)-32)/1.80).toFixed(0) ;
+       // type casting from string to number 
+       Temp_C= Number(Temp_C);       
+       var temp_min= Temp_C-7;
+        
+      var temp_max= Temp_C+5;
       
-        res.render('result.hbs', {weather: weather, temp_c:Temp_C, error: null});
+        res.render('result.hbs', {weather: weather, temp_c:Temp_C, Temp_min:temp_min , Temp_max: temp_max, error: null});
 
       }
     }

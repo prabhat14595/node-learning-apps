@@ -10,10 +10,10 @@
                         
                         <h3 class="grey-text">
                 
-                                {{ weather.name }}, {{weather.sys.country}}
+                                {{ weather.name }}, {{weather.sys.country}}, {{weather.weather.description}}
                                
                         </h3>
-                        <h4 class="green-text">Temparature:<b class="blue-text"> {{temp_c}} C </b></h4> 
+                        <h4 class="green-text">Temparature:<b class="blue-text"> {{temp_c}}&deg; C </b></h4> 
     
                 </div>
                 
@@ -23,21 +23,26 @@
                         <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
                         </li>       
                         <li >
-                        <div class="collapsible-header blue-text"><i class="material-icons">filter_drama</i>TEMPARATURE in F: {{weather.main.temp}}</div>
+                        <div class="collapsible-header blue-text"><i class="material-icons">filter_drama</i>TEMPARATURE in F: {{weather.main.temp}}&deg; F</div>
                         <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
                         </li>
                         <li>
-                        <div class="collapsible-header green-text"><i class="material-icons">place</i>PRESSURE: {{weather.main.pressure}}P</div>
+                        <div class="collapsible-header green-text"><i class="material-icons">place</i>PRESSURE: {{weather.main.pressure}} Pa</div>
                         <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
                         </li>
                         <li>
-                        <div class="collapsible-header brown-text"><i class="material-icons">whatshot</i>TEMPARATURE MIN: {{weather.main.temp_min}}  </div>
+                        <div class="collapsible-header brown-text"><i class="material-icons">whatshot</i>TEMPARATURE MIN: {{Temp_min}}  </div>
                         <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
                         </li>
                          <li>
-                        <div class="collapsible-header lime-text"><i class="material-icons">filter_drama</i>TEMPARATURE MAX: {{weather.main.temp_max}}</b> </div>
+                        <div class="collapsible-header lime-text"><i class="material-icons">filter_drama</i>TEMPARATURE MAX: {{Temp_max}}</b> </div>
                         <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
                         </li>
+                         <li>
+                        <div class="collapsible-header pink-text"><i class="material-icons">cloud</i>HUMIDITY: {{weather.main.humidity}}</b> </div>
+                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                        </li>
+
                         </ul>
 
                 
