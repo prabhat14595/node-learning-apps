@@ -20,29 +20,29 @@ app.get('/', (req, res) => {
 });
 
 
-app.post('/', urlencodedParser, function (req, res) {
-  const apiKey='fb873262914c18a62e556c99d83c063b';
-  var city = req.body.city;
+// app.post('/', urlencodedParser, function (req, res) {
+//   const apiKey='fb873262914c18a62e556c99d83c063b';
+//   var city = req.body.city;
 
 
- let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
-request(url, function (err, response, body) {
-    if(err){
-      res.render('index', {weather: null, error: 'Error, please try again'});
-    } else {
-      var weather = JSON.parse(body)
-      if(weather.main == undefined){
-        res.render('result.hbs', {weather: null, error: 'Error, please try again'});
-      } else {
-        console.log(weather);
-       var Temp_C =  (((weather.main.temp)-32)/1.80).toFixed(2) ;
+//  let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
+// request(url, function (err, response, body) {
+//     if(err){
+//       res.render('index', {weather: null, error: 'Error, please try again'});
+//     } else {
+//       var weather = JSON.parse(body)
+//       if(weather.main == undefined){
+//         res.render('result.hbs', {weather: null, error: 'Error, please try again'});
+//       } else {
+//         console.log(weather);
+//        var Temp_C =  (((weather.main.temp)-32)/1.80).toFixed(2) ;
       
-        res.render('result.hbs', {weather: weather, temp_c:Temp_C, error: null});
+//         res.render('result.hbs', {weather: weather, temp_c:Temp_C, error: null});
 
-      }
-    }
-  });
-})
+//       }
+//     }
+//   });
+// });
 
 
 app.get('/about',  (req, res) => {
